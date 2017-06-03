@@ -1,5 +1,5 @@
 package dalton.kotlin.springkotlin
-
+/*
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
@@ -18,3 +18,4 @@ class CustomerController(val repository:CustomerRepository){
     fun findByLastName(@PathVariable name:String)
         = repository.findByLastName(name)
 }
+*/

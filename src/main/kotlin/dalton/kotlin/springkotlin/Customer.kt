@@ -1,6 +1,6 @@
 package dalton.kotlin.springkotlin
 
-import javax.persistence.Entity
+/*import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -14,4 +14,4 @@ class Customer(
         var lastName: String = "",
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
         var id: Long =0
-)
+)*/

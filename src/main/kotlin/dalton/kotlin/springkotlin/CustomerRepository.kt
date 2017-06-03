@@ -1,6 +1,6 @@
 package dalton.kotlin.springkotlin
 
-import org.springframework.data.repository.CrudRepository
+/*import org.springframework.data.repository.CrudRepository
 
 /**
  * Created by dalton on 18/05/17.
@@ -9,3 +9,4 @@ import org.springframework.data.repository.CrudRepository
 interface CustomerRepository : CrudRepository<Customer, Long>{
     fun findByLastName(name: String): List<Customer>
 }
+*/
