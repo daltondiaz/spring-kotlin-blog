@@ -22,3 +22,5 @@ So I create a documento called Data with some fields only for test, I use
     interface DataRepository : MongoRepository<Data,String>
     
 So simple and one controller for request the data who I added.
+
+
