@@ -1,4 +1,4 @@
-package dalton.kotlin.springkotlin.dalton.kotlin.springkotlin.post
+package dalton.kotlin.springkotlin.post
 
 import org.springframework.web.bind.annotation.*
 
@@ -20,7 +20,7 @@ class PostController(val postRepository: PostRepository, val postService : PostS
         = postRepository.findOne(id)
 
     @PostMapping("/post")
-    fun save(@RequestBody post:Post)
+    fun save(@RequestBody post: Post)
         = postRepository.save(post)
 
 

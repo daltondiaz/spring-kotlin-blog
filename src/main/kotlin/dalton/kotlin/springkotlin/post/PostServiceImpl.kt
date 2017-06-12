@@ -1,4 +1,4 @@
-package dalton.kotlin.springkotlin.dalton.kotlin.springkotlin.post
+package dalton.kotlin.springkotlin.post
 
 import org.springframework.stereotype.Component
 

@@ -1,6 +1,7 @@
-package dalton.kotlin.springkotlin.dalton.kotlin.springkotlin.post
+package dalton.kotlin.springkotlin.post
 
 
+import dalton.kotlin.springkotlin.author.Author
 import javax.persistence.*
 
 /**
@@ -13,8 +14,9 @@ data class Post (
         var title: String,
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
         var id:Long,
-        var status: Boolean = true
+        var status: Boolean = true,
+        @ManyToOne
+        var author:Author
 ){
-
-        constructor(): this("","",0)
+        constructor(): this("","",0,true,Author())
 }
