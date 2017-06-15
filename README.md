@@ -8,6 +8,8 @@ Make sure you have at least IntelliJ IDEA 2016.3 and Kotlin plugin 1.0.6 since `
 
 ## Running
 
+You need install postgresql and the configuration are in **application.properties**
+
     $ ./gradlew bootRun
 
 ## Tools
