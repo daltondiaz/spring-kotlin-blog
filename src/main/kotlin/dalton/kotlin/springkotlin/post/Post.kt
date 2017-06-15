@@ -2,6 +2,7 @@ package dalton.kotlin.springkotlin.post
 
 
 import dalton.kotlin.springkotlin.author.Author
+import dalton.kotlin.springkotlin.hashtag.Hashtag
 import javax.persistence.*
 
 /**
@@ -16,7 +17,9 @@ data class Post (
         var id:Long,
         var status: Boolean = true,
         @ManyToOne
-        var author:Author
+        var author:Author,
+        @ManyToMany
+        var hashtags: Hashtag
 ){
-        constructor(): this("","",0,true,Author())
+        constructor(): this("","",0,true,Author(), Hashtag())
 }

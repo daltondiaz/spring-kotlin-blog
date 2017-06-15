@@ -13,8 +13,9 @@ data class Author(
         var id: Int=0,
         var name: String,
         var email: String,
-        var password: String
+        var password: String,
+        var status: Boolean
 
 ){
-    constructor(): this(0,"","","")
+    constructor(): this(0,"","","",true)
 }

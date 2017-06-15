@@ -1,5 +1,6 @@
 package dalton.kotlin.springkotlin.post
 
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
 /**
@@ -7,8 +8,9 @@ import org.springframework.stereotype.Component
  */
 
 @Component
-class PostServiceImpl(val postRepository: PostRepository){
+class PostService(val postRepository: PostRepository){
 
+    val log = LoggerFactory.getLogger(PostService::class.java)
 
     fun updatePost(post: Post):Boolean{
         try {
@@ -18,7 +20,7 @@ class PostServiceImpl(val postRepository: PostRepository){
             postRepository.save(newPost)
             return true
         }catch (e:Exception ){
-            e.printStackTrace()
+            log.error(e.localizedMessage, e)
         }
         return false
     }
@@ -30,7 +32,7 @@ class PostServiceImpl(val postRepository: PostRepository){
             postRepository.save(post)
             return true
         }catch (e: Exception){
-            e.printStackTrace()
+            log.error(e.localizedMessage, e)
         }
         return false
     }

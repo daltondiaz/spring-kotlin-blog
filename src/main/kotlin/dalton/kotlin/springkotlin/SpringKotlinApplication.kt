@@ -10,22 +10,6 @@ class SpringKotlinApplication{
 
     private val log = LoggerFactory.getLogger(SpringKotlinApplication::class.java)
 
-    /*@Bean
-    fun init(repository: DataRepository) = CommandLineRunner{
-
-        repository.deleteAll()*/
-        /*repository.save(Customer("Jack","Bauer"))
-        repository.save(Customer("Chloe","O'Brian"))
-        repository.save(Customer("Kim","Bauer"))
-        repository.save(Customer("David","Palmer"))
-        repository.save(Customer("Michelle","Dessler"))*/
-
-        /*repository.save(Data(Date(),Date(),Date(),UUID.randomUUID().toString(),"1"))
-        val list = repository.findAll()
-        for(item in list){
-            print(item)
-        }
-    }*/
 }
 
 fun main(args: Array<String>) {

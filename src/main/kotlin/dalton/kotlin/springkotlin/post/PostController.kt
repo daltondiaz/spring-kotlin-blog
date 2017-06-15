@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1")
-class PostController(val postRepository: PostRepository, val postService : PostServiceImpl){
-
+class PostController(val postRepository: PostRepository, val postService : PostService){
 
     @GetMapping("/post")
     fun findAll()
