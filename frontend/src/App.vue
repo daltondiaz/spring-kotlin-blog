@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <textarea name="name" rows="8" cols="80"></textarea>
-    <button type="button" name="button">Post it</button>
+    <textarea name="name" rows="8" cols="80" v-model="post"></textarea>
+    <button type="button" name="button" v-on:click="addNewPost()" >Post it</button>
       <div v-for="post in posts" >
         <blockquote cite="http://">
           {{ post.message }}
@@ -15,10 +15,17 @@
 export default {
   data(){
     return {
+      post: '',
       posts:[
         { message: 'First static cool message' },
         { message: 'Second message'}
       ]
+    }
+  },
+  methods:{
+    addNewPost: function(){
+      this.posts.push({'message': this.post})
+      this.post = ''
     }
   }
 }
