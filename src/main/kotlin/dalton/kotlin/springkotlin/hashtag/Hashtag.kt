@@ -12,10 +12,8 @@ import javax.persistence.Table
 @Table(name="hashtag")
 data class Hashtag(
         @Id
-        var id:Long,
-        var description:String,
-        var name:String,
-        var status: Boolean
-){
-    constructor() : this(0,"","",true)
-}
+        var id:Long = 0,
+        var description:String = "",
+        var name:String = "",
+        var status: Boolean = true
+)

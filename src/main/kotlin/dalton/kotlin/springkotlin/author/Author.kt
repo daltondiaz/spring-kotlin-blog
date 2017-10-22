@@ -11,11 +11,8 @@ import javax.persistence.*
 data class Author(
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
         var id: Int=0,
-        var name: String,
-        var email: String,
-        var password: String,
-        var status: Boolean
-
-){
-    constructor(): this(0,"","","",true)
-}
+        var name: String = "",
+        var email: String = "",
+        var password: String = "",
+        var status: Boolean = false
+)

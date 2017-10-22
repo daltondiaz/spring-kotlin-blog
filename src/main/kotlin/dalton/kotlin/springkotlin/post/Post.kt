@@ -11,15 +11,13 @@ import javax.persistence.*
 @Entity
 @Table(name = "post")
 data class Post (
-        var description: String,
-        var title: String,
+        var description: String = "",
+        var title: String = "",
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
-        var id:Long,
+        var id:Long = 0,
         var status: Boolean = true,
         @ManyToOne
-        var author:Author,
-        @ManyToMany
-        var hashtags: Hashtag
-){
-        constructor(): this("","",0,true,Author(), Hashtag())
-}
+        var author:Author = Author(),
+        @OneToMany
+        var hashtags: MutableList<Hashtag> = mutableListOf()
+)
