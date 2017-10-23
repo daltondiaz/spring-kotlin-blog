@@ -26,7 +26,7 @@
             <div class="card-content">
               <div class="content">
                 <p>{{ post.description }}</p>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                <time>{{post.creationDate}}</time>
               </div>
             </div>
             <footer class="card-footer">
@@ -51,10 +51,11 @@ export default {
     return {
       description: '',
       title: '',
+      creationDate: '',
       posts:[ 
       ],
       errors:[
-        
+
       ]
     }
   },
@@ -63,9 +64,21 @@ export default {
   },
   methods:{
     addNewPost: function(){
-      this.posts.push({'title':this.title,'description': this.description})
-      this.title = ''
-      this.description = ''
+
+      self = this;
+      axios.post('http://localhost:8081/api/v1/post',{
+        description : this.description,
+        title: this.title
+      }).then(function(response){
+        self.posts.push({'title':self.title,'description': self.description, 'creationDate':'Now'})
+        console.log(response);
+        self.title = '';
+        self.description = '';
+      }).catch(function(error){
+        console.log(error);
+      });
+      
+
     },getAllPosts : function(){
       axios.get('http://localhost:8081/api/v1/post')
         .then(response => {

@@ -1,5 +1,6 @@
 package dalton.kotlin.springkotlin.post
 
+import dalton.kotlin.springkotlin.author.Author
 import org.springframework.data.jpa.repository.JpaRepository
 
 /**
@@ -8,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface  PostRepository: JpaRepository<Post, Long> {
 
+    fun findByAuthorOrderByCreationDateDesc(author: Author):List<Post>
 }

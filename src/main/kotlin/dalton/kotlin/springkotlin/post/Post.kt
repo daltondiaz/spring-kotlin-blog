@@ -3,6 +3,7 @@ package dalton.kotlin.springkotlin.post
 
 import dalton.kotlin.springkotlin.author.Author
 import dalton.kotlin.springkotlin.hashtag.Hashtag
+import java.util.*
 import javax.persistence.*
 
 /**
@@ -19,5 +20,7 @@ data class Post (
         @ManyToOne
         var author:Author = Author(),
         @OneToMany
-        var hashtags: MutableList<Hashtag> = mutableListOf()
+        var hashtags: MutableList<Hashtag> = mutableListOf(),
+        var creationDate: Date = Date(),
+        var updateDate: Date
 )
