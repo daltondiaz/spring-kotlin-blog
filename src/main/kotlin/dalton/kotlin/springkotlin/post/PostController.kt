@@ -16,7 +16,7 @@ class PostController(val postRepository: PostRepository, val postService : PostS
     @GetMapping("/post")
     fun findAll():List<Post>{
         val author = authorRepository.findOne(1L)
-        val posts = postRepository.findByAuthorOrderByCreationDateDesc(author)
+        val posts = postRepository.findByAuthorAndStatusOrderByCreationDateDesc(author,true)
         return posts
     }
 
@@ -26,13 +26,14 @@ class PostController(val postRepository: PostRepository, val postService : PostS
         = postRepository.findOne(id)
 
     @PostMapping("/post")
-    fun save(@RequestBody post: Post){
+    fun save(@RequestBody post: Post):Post{
 
         val author = Author()
         author.id= 1
         post.author = author
         post.creationDate = Date()
-        postRepository.save(post)
+        post.status = true
+        return postRepository.save(post)
     }
 
     @PutMapping("/post")

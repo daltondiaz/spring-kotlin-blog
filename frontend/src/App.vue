@@ -17,26 +17,37 @@
             <button class= "button is-success" type="button" name="button" v-on:click="addNewPost()" >Post it</button>
           </div>
           <div class="column is-6">
-            <h2 class="subtitle has-text-centered">Posts</h2>
+            
+            <h2 class="subtitle has-text-centered ">
+              <span class="icon">
+                <i class="fa fa-home"></i>
+              </span>
+              Posts
+            </h2>
             <div v-for="post in posts">
               <div class="card">
                 <header class="card-header">
                   <p class="card-header-title">
                     {{ post.title}}
                   </p>
+                  <button class="delete is-medium" v-on:click="deletePost(post)"></button>
                 </header>
               
                 <div class="card-content">
 
                   <div class="content">
                     <p>{{ post.description }}</p>
-                    <p><i>Posted at <time>{{post.creationDateFormat}}</time></i></p>
+                    <p>
+                      <i>
+                        Posted at <time>{{post.creationDateFormat}}</time> 
+                        by {{post.author.name}}
+                      </i>
+                    </p>
                   </div>
                 </div>
                 <footer class="card-footer">
                   <a class="card-footer-item button is-success">Save</a>
                   <a class="card-footer-item button is-warning">Edit</a>
-                  <a class="card-footer-item button is-danger">Delete</a>
                 </footer>
               </div>
               </br>
@@ -69,7 +80,7 @@ export default {
   mounted(){
     this.getAllPosts()
   },
-  methods:{
+  methods:{ 
     addNewPost: function(){
 
       self = this;
@@ -77,10 +88,7 @@ export default {
         description : this.description,
         title: this.title
       }).then(function(response){
-        self.posts.push({
-          'title':self.title,
-          'description': self.description, 
-          'creationDateFormat':'Now'})
+        self.posts.push(response.data)
         console.log(response);
         self.title = '';
         self.description = '';
@@ -89,7 +97,8 @@ export default {
       });
       
 
-    },getAllPosts : function(){
+    },
+    getAllPosts : function(){
       axios.get('http://localhost:8081/api/v1/post')
         .then(response => {
           this.posts = response.data
@@ -97,7 +106,17 @@ export default {
         .catch(e =>{
           this.errors.push(e)
         });
-     }
+    },
+    deletePost: function(post){
+      self = this;
+      axios.delete("http://localhost:8081/api/v1/post/"+post.id)
+        .then(response =>{
+          self.posts.pop(post)
+        })
+        .catch(e =>{
+          console.log(e);
+        });
+    }
   }
 }
 </script>

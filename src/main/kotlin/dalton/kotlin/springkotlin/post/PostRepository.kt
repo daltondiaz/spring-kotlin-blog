@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface  PostRepository: JpaRepository<Post, Long> {
 
-    fun findByAuthorOrderByCreationDateDesc(author: Author):List<Post>
+    fun findByAuthorAndStatusOrderByCreationDateDesc(author: Author, status:Boolean):List<Post>
 }
