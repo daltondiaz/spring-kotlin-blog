@@ -1,39 +1,46 @@
 <template>
-  <section class="hero">
-    <div id="app" class="container">
-      <h1 class="title">Blog Vuejs</h1>
-      <h2 class="subtitle">This is a blog using vuejs and bulma</h2>
+  <section class="hero is-info is-medium  is-bold">
+    <div class="hero-body">
+      <div id="app" class="container">
+        <h1 class="title">Blog Vuejs</h1>
+        <h2 class="subtitle">This is a mini blog using vuejs and bulma</h2>
 
-      <div class="columns" >
+        <div class="columns" >
 
-        <div class="column is-6 ">
-          <div class="field">
-            <input type="text" class="input" v-model="title" placeholder="Title"></input>
-          </div>
-          <div class="field">
-            <textarea class= "textarea" name="name" rows="8" cols="80" v-model="description" placeholder="Post content"></textarea>
-          </div>
-          <button class= "button is-primary is-outlined" type="button" name="button" v-on:click="addNewPost()" >Post it</button>
-        </div>
-        <div class="column is-6">
-          <h2 class="subtitle has-text-centered">Posts</h2>
-          <div v-for="post in posts" class="card" >
-            <header class="card-header">
-              <p class="card-header-title">
-                {{ post.title}}
-              </p>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                <p>{{ post.description }}</p>
-                <time>{{post.creationDate}}</time>
-              </div>
+          <div class="column is-6 ">
+            <div class="field">
+              <input type="text" class="input" v-model="title" placeholder="Title"></input>
             </div>
-            <footer class="card-footer">
-              <a class="card-footer-item button is-success">Save</a>
-              <a class="card-footer-item button is-warning">Edit</a>
-              <a class="card-footer-item button is-danger">Delete</a>
-            </footer>
+            <div class="field">
+              <textarea class= "textarea" name="name" rows="8" cols="80" v-model="description" placeholder="Post content"></textarea>
+            </div>
+            <button class= "button is-success" type="button" name="button" v-on:click="addNewPost()" >Post it</button>
+          </div>
+          <div class="column is-6">
+            <h2 class="subtitle has-text-centered">Posts</h2>
+            <div v-for="post in posts">
+              <div class="card">
+                <header class="card-header">
+                  <p class="card-header-title">
+                    {{ post.title}}
+                  </p>
+                </header>
+              
+                <div class="card-content">
+
+                  <div class="content">
+                    <p>{{ post.description }}</p>
+                    <p><i>Posted at <time>{{post.creationDateFormat}}</time></i></p>
+                  </div>
+                </div>
+                <footer class="card-footer">
+                  <a class="card-footer-item button is-success">Save</a>
+                  <a class="card-footer-item button is-warning">Edit</a>
+                  <a class="card-footer-item button is-danger">Delete</a>
+                </footer>
+              </div>
+              </br>
+            </div>
           </div>
         </div>
       </div>
@@ -44,14 +51,14 @@
 
 <script>
 
-import axios from 'axios';
+import axios from 'axios';  
 
 export default {
   data(){
     return {
       description: '',
       title: '',
-      creationDate: '',
+      creationDateFormat: '',
       posts:[ 
       ],
       errors:[
@@ -70,7 +77,10 @@ export default {
         description : this.description,
         title: this.title
       }).then(function(response){
-        self.posts.push({'title':self.title,'description': self.description, 'creationDate':'Now'})
+        self.posts.push({
+          'title':self.title,
+          'description': self.description, 
+          'creationDateFormat':'Now'})
         console.log(response);
         self.title = '';
         self.description = '';
