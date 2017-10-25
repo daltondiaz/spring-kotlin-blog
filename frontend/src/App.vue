@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-info is-medium  is-bold">
+  <section class="tites">
     <div class="hero-body">
       <div id="app" class="container">
         <h1 class="title">Blog Vuejs</h1>
@@ -25,30 +25,33 @@
               Posts
             </h2>
             <div v-for="post in posts">
-              <div class="card">
-                <header class="card-header">
-                  <p class="card-header-title">
+              <div class="">
+                <div class=" ">
+                  <p class="title is-4">
                     {{ post.title}}
                   </p>
-                  <button class="delete is-medium" v-on:click="deletePost(post)"></button>
-                </header>
-              
-                <div class="card-content">
-
-                  <div class="content">
-                    <p>{{ post.description }}</p>
-                    <p>
-                      <i>
-                        Posted at <time>{{post.creationDateFormat}}</time> 
-                        by {{post.author.name}}
-                      </i>
-                    </p>
-                  </div>
                 </div>
-                <footer class="card-footer">
-                  <a class="card-footer-item button is-success">Save</a>
-                  <a class="card-footer-item button is-warning">Edit</a>
+                <div class="content">
+                  <p>{{ post.description }}</p>
+                </div>
+                <footer >
+                  <i class="is-small content">
+                    Posted at <time>{{post.creationDateFormat}}</time> 
+                    by <b>{{post.author.name}}</b>
+                  </i>
                 </footer>
+                <a class="button is-warning is-outlined">
+                  <span>Edit</span>
+                  <span class="icon is-small">
+                    <i class="fa fa-edit"></i>
+                  </span>
+                </a>
+                <a class="button is-danger is-outlined" v-on:click="deletePost(post)">
+                  <span>Delete</span>
+                  <span class="icon is-small">
+                    <i class="fa fa-times"></i>
+                  </span>
+                </a>
               </div>
               </br>
             </div>
@@ -78,7 +81,8 @@ export default {
     }
   },
   mounted(){
-    this.getAllPosts()
+    this.getAllPosts(),
+    this.de
   },
   methods:{ 
     addNewPost: function(){
