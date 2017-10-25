@@ -2,9 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
+import Buefy from 'buefy'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
+Vue.use(Buefy)
 
 // Set up routing and match routes to components
 export var router = new VueRouter({

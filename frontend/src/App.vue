@@ -46,7 +46,7 @@
                     <i class="fa fa-edit"></i>
                   </span>
                 </a>
-                <a class="button is-danger is-outlined" v-on:click="deletePost(post)">
+                <a class="button is-danger is-outlined" @click="deletePost(post)">
                   <span>Delete</span>
                   <span class="icon is-small">
                     <i class="fa fa-times"></i>
@@ -60,12 +60,11 @@
       </div>
     </div>
   </section>
-
 </template>
 
 <script>
 
-import axios from 'axios';  
+import axios from 'axios';
 
 export default {
   data(){
@@ -99,8 +98,6 @@ export default {
       }).catch(function(error){
         console.log(error);
       });
-      
-
     },
     getAllPosts : function(){
       axios.get('http://localhost:8081/api/v1/post')
@@ -113,13 +110,23 @@ export default {
     },
     deletePost: function(post){
       self = this;
-      axios.delete("http://localhost:8081/api/v1/post/"+post.id)
-        .then(response =>{
-          self.posts.pop(post)
-        })
-        .catch(e =>{
-          console.log(e);
-        });
+      // this.$dialog is from Buefy
+      this.$dialog.confirm({
+        title: 'Deleting post',
+        message: 'Are you sure you want to <b>delete</b> this post? This cannot be done.',
+        confirmText: 'Delete Post',
+        type: 'is-danger',
+        hasIcon: true,
+        onConfirm: () => axios.delete("http://localhost:8081/api/v1/post/"+post.id)
+          .then(response =>{
+            self.posts.pop(post)
+            // TODO make a better remove item list
+            this.$toast.open('Post deleted!');
+          })
+          .catch(e =>{
+            console.log(e);
+          })
+      }) 
     }
   }
 }
