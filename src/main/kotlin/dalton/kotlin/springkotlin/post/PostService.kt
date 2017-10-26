@@ -2,6 +2,7 @@ package dalton.kotlin.springkotlin.post
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
+import java.util.*
 
 /**
  * Created by dalton on 10/06/17.
@@ -17,6 +18,7 @@ class PostService(val postRepository: PostRepository){
             var newPost = postRepository.findOne(post.id)
             newPost.title = post.title
             newPost.description = post.description
+            newPost.updateDate = Date()
             postRepository.save(newPost)
             return true
         }catch (e:Exception ){

@@ -28,7 +28,15 @@ data class Post (
         // created a get to format the creation date
         val creationDateFormat: String
                 get() {
-                        var sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
-                        return sdf.format(this.creationDate)
+                        return SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(this.creationDate)
+                }
+
+        val updateDateFormat: String
+                get(){
+                        if(this.updateDate != null){
+                                return SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(this.updateDate)
+                        }else{
+                                return ""
+                        }
                 }
 }

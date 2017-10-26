@@ -36,16 +36,25 @@
                 </div>
                 <footer >
                   <i class="is-small content">
-                    Posted at <time>{{post.creationDateFormat}}</time> 
+                    <div v-if="post.updateDateFormat == '' ">
+                      Posted at <time>{{post.creationDateFormat}}</time> 
+                    </div>
+                    <div v-else>
+                      Update at <time>{{post.updateDateFormat}}</time>
+                    </div>
+                    
                     by <b>{{post.author.name}}</b>
                   </i>
                 </footer>
-                <a class="button is-warning is-outlined">
+                <a class="button is-warning is-outlined" @click="isComponentModalActive = true">
                   <span>Edit</span>
                   <span class="icon is-small">
                     <i class="fa fa-edit"></i>
                   </span>
                 </a>
+                <b-modal :active.sync="isComponentModalActive" has-modal-card>
+                  <v-post v-bind="post"></v-post>
+                </b-modal>
                 <a class="button is-danger is-outlined" @click="deletePost(post)">
                   <span>Delete</span>
                   <span class="icon is-small">
@@ -65,10 +74,12 @@
 <script>
 
 import axios from 'axios';
+import Post from './components/Post.vue';
 
 export default {
   data(){
     return {
+      isComponentModalActive: false,
       description: '',
       title: '',
       creationDateFormat: '',
@@ -78,6 +89,9 @@ export default {
 
       ]
     }
+  },
+  components:{
+    'v-post': Post
   },
   mounted(){
     this.getAllPosts(),
