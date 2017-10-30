@@ -14,6 +14,7 @@
             <div class="field">
               <textarea class= "textarea" name="name" rows="8" cols="80" v-model="description" placeholder="Post content"></textarea>
             </div>
+            <v-multiselect v-bind="post"></v-multiselect>
             <button class= "button is-success" type="button" name="button" v-on:click="addNewPost()" >Post it</button>
           </div>
           <div class="column is-6">
@@ -53,7 +54,7 @@
                   </span>
                 </a>
                 <b-modal :active.sync="isComponentModalActive" has-modal-card>
-                  <v-post v-bind="post"></v-post>
+                  <v-update-post v-bind="post"></v-update-post>
                 </b-modal>
                 <a class="button is-danger is-outlined" @click="deletePost(post)">
                   <span>Delete</span>
@@ -74,7 +75,8 @@
 <script>
 
 import axios from 'axios';
-import Post from './components/Post.vue';
+import UpdatePost from './components/UpdatePost.vue';
+import Multiselect from './components/Multiselect.vue';
 
 export default {
   data(){
@@ -91,11 +93,11 @@ export default {
     }
   },
   components:{
-    'v-post': Post
+    'v-update-post': UpdatePost,
+    'v-multiselect': Multiselect
   },
   mounted(){
-    this.getAllPosts(),
-    this.de
+    this.getAllPosts()
   },
   methods:{ 
     addNewPost: function(){

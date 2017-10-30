@@ -1,9 +1,8 @@
 package dalton.kotlin.springkotlin.post
 
-import dalton.kotlin.springkotlin.author.Author
 import dalton.kotlin.springkotlin.author.AuthorRepository
+import dalton.kotlin.springkotlin.hashtag.Hashtag
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 /**
  * Created by dalton on 08/06/17.
@@ -26,14 +25,8 @@ class PostController(val postRepository: PostRepository, val postService : PostS
         = postRepository.findOne(id)
 
     @PostMapping("/post")
-    fun save(@RequestBody post: Post):Post{
-
-        val author = Author()
-        author.id= 1
-        post.author = author
-        post.creationDate = Date()
-        post.status = true
-        return postRepository.save(post)
+    fun save(@RequestBody post: Post, hashtags: ArrayList<Hashtag>):Post{
+        return postService.save(post)
     }
 
     @PutMapping("/post")

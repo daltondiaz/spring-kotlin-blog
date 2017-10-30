@@ -19,13 +19,11 @@
     </div>
   </form>
 </template>
-<<script>
+<script>
 
 import axios from 'axios';
 
 export default {
-    
-
     props:['title','description','id'],
     methods:{
         updatePost: function(){
