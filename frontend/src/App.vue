@@ -14,7 +14,7 @@
             <div class="field">
               <textarea class= "textarea" name="name" rows="8" cols="80" v-model="description" placeholder="Post content"></textarea>
             </div>
-            <v-multiselect v-bind="post"></v-multiselect>
+            <v-multiselect v-model="hashtags"></v-multiselect>
             <button class= "button is-success" type="button" name="button" v-on:click="addNewPost()" >Post it</button>
           </div>
           <div class="column is-6">
@@ -89,6 +89,9 @@ export default {
       ],
       errors:[
 
+      ],
+      hashtags:[
+
       ]
     }
   },
@@ -105,12 +108,14 @@ export default {
       self = this;
       axios.post('http://localhost:8081/api/v1/post',{
         description : this.description,
-        title: this.title
+        title: this.title,
+        hashtags: this.hashtags
       }).then(function(response){
         self.posts.push(response.data)
         console.log(response);
         self.title = '';
         self.description = '';
+        self.hashtags = [];
       }).catch(function(error){
         console.log(error);
       });
@@ -144,6 +149,12 @@ export default {
           })
       }) 
     }
+  },
+  created(){
+    // get value from child component and add to hashtags from parent component
+    this.$root.$on('hashtags', (hashtags) => {
+    	this.hashtags = hashtags;
+    })
   }
 }
 </script>

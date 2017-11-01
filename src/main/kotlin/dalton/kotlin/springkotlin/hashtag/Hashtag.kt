@@ -20,7 +20,5 @@ data class Hashtag(
         var name:String = "",
         var status: Boolean = true,
         var creationDate : Date = Date(),
-        var updateDate : Date
-
-
+        var updateDate : Date?
 )

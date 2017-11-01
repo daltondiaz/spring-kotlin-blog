@@ -53,6 +53,7 @@ class PostService(val postRepository: PostRepository, val hashtagRepostiory: Has
 
         val hashtags = post.hashtags
 
+
         for (hashtag : Hashtag in hashtags){
             if (hashtag.id == 0L){
                 hashtag.creationDate = Date()

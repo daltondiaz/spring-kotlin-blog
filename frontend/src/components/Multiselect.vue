@@ -9,6 +9,7 @@
                 placeholder="Select some tags"
                 tag-placeholder="Add this as new tag"
                 @tag="addTag"
+                @input="onChange"
                  >
         <span slot="noResult">Oops! No tag found.</span>
         </multiselect>
@@ -20,10 +21,9 @@ import axios from 'axios';
 import Mutliselect from 'vue-multiselect';
 
 export default{
-
     data(){
         return{
-            value: null,
+            value: [],
             options:[
             ]
         }
@@ -52,6 +52,10 @@ export default{
             }
             this.options.push(tag)
             this.value.push(tag)
+        },
+        // send hashtags to parent component 
+        onChange: function(){
+            this.$root.$emit('hashtags',this.value);
         }
     }
 }
@@ -59,3 +63,7 @@ export default{
 <!-- New step!
      Add Multiselect CSS. Can be added as a static asset or inside a component. -->
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style>
+
+</style>
+

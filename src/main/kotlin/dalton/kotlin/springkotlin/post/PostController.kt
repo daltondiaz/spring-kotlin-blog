@@ -25,9 +25,8 @@ class PostController(val postRepository: PostRepository, val postService : PostS
         = postRepository.findOne(id)
 
     @PostMapping("/post")
-    fun save(@RequestBody post: Post, hashtags: ArrayList<Hashtag>):Post{
-        return postService.save(post)
-    }
+    fun save(@RequestBody post: Post): Post
+        = postService.save(post)
 
     @PutMapping("/post")
     fun update(@RequestBody post: Post)
