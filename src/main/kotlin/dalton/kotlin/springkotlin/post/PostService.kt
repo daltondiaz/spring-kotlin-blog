@@ -62,6 +62,6 @@ class PostService(val postRepository: PostRepository, val hashtagRepostiory: Has
             }
         }
 
-        return postRepository.save(post)
+            return postRepository.save(post)
     }
 }

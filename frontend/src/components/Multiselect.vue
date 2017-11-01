@@ -2,6 +2,7 @@
     <div class="field">
         <multiselect v-model="value" 
                 label="name"
+                track-by="name"
                 :options="options" 
                 :multiple="true"
                 :searchable="true"
@@ -57,6 +58,12 @@ export default{
         onChange: function(){
             this.$root.$emit('hashtags',this.value);
         }
+    },
+    created(){
+        // assigment to value from parent action
+        this.$parent.$on('hashtags',(value) =>{
+            this.value = value;
+        })
     }
 }
 </script>

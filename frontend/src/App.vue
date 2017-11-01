@@ -35,6 +35,13 @@
                 <div class="content">
                   <p>{{ post.description }}</p>
                 </div>
+                <b-field grouped group-multiline> 
+                  <div v-for="(value, key, index) in post.hashtags">
+                    <span class="multiselect__tag">
+                      <span>{{value.name}}</span>
+                    </span>
+                  </div>
+                </b-field>
                 <footer >
                   <i class="is-small content">
                     <div v-if="post.updateDateFormat == '' ">
@@ -111,11 +118,11 @@ export default {
         title: this.title,
         hashtags: this.hashtags
       }).then(function(response){
-        self.posts.push(response.data)
-        console.log(response);
+        self.posts.push(response.data);
         self.title = '';
         self.description = '';
-        self.hashtags = [];
+        // Send to child (Multiselect) to clean
+        self.$emit('hashtags', []);
       }).catch(function(error){
         console.log(error);
       });
@@ -142,7 +149,10 @@ export default {
           .then(response =>{
             self.posts.pop(post)
             // TODO make a better remove item list
-            this.$toast.open('Post deleted!');
+            self.$toast.open({
+              message:'Post deleted!',
+              type: 'is-success'
+            });
           })
           .catch(e =>{
             console.log(e);
