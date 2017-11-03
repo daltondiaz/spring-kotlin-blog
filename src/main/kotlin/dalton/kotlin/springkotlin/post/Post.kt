@@ -2,9 +2,7 @@ package dalton.kotlin.springkotlin.post
 
 
 import dalton.kotlin.springkotlin.author.Author
-import dalton.kotlin.springkotlin.hashtag.Hashtag
-import org.hibernate.annotations.Cascade
-import org.hibernate.annotations.CascadeType
+import dalton.kotlin.springkotlin.hashtag.Tag
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.persistence.*
@@ -24,7 +22,7 @@ data class Post (
         var author:Author = Author(),
         @ManyToMany
         //@Cascade(CascadeType.SAVE_UPDATE)
-        var hashtags: MutableList<Hashtag> = mutableListOf(),
+        var tags: MutableList<Tag> = mutableListOf(),
         var creationDate: Date = Date(),
         var updateDate: Date?
 ){

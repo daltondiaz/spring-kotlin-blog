@@ -12,8 +12,8 @@ import javax.persistence.*
  */
 
 @Entity
-@Table(name="hashtag")
-data class Hashtag(
+@Table(name="tag")
+data class Tag(
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
         var id:Long = 0,
         var description:String = "",

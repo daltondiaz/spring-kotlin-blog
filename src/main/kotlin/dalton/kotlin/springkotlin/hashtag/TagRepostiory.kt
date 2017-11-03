@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 /**
  * Created by dalton on 15/06/17.
+ *
+ * @author dalton
+ * @since v1.0
  */
 
-interface HashtagRepostiory : JpaRepository<Hashtag,Long>
+interface TagRepostiory : JpaRepository<Tag,Long>

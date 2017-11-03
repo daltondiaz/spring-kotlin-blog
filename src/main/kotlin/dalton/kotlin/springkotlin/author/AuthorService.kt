@@ -1,11 +1,13 @@
 package dalton.kotlin.springkotlin.author
 
-import dalton.kotlin.springkotlin.hashtag.HashtagService
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
 /**
  * Created by dalton on 15/06/17.
+ *
+ * @author dalton
+ * @since v1.0
  */
 
 @Component

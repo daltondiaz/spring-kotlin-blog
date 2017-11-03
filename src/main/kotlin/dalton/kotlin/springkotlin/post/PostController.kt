@@ -1,7 +1,6 @@
 package dalton.kotlin.springkotlin.post
 
 import dalton.kotlin.springkotlin.author.AuthorRepository
-import dalton.kotlin.springkotlin.hashtag.Hashtag
 import org.springframework.web.bind.annotation.*
 
 /**
@@ -18,7 +17,6 @@ class PostController(val postRepository: PostRepository, val postService : PostS
         val posts = postRepository.findByAuthorAndStatusOrderByCreationDateDesc(author,true)
         return posts
     }
-
 
     @GetMapping("/post/{id}")
     fun findOne(@PathVariable id:Long)

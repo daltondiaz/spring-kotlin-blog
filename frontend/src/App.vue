@@ -28,7 +28,7 @@
               </textarea>
               <div class="is-warning" v-if="contentField && attemptPost">This field is required.</div>
             </div>
-            <v-multiselect v-model="hashtags"></v-multiselect>
+            <v-multiselect v-model="tags"></v-multiselect>
             <button class= "button is-success" type="button" name="button" v-on:click="addNewPost()" >Post it</button>
           </div>
           <div class="column is-6">
@@ -50,7 +50,7 @@
                   <p>{{ post.description }}</p>
                 </div>
                 <b-field grouped group-multiline> 
-                  <div v-for="(value, key, index) in post.hashtags">
+                  <div v-for="(value, key, index) in post.tags">
                     <span class="multiselect__tag">
                       <span>{{value.name}}</span>
                     </span>
@@ -111,7 +111,7 @@ export default {
       errors:[
 
       ],
-      hashtags:[
+      tags:[
 
       ],
       attemptPost: false
@@ -141,13 +141,13 @@ export default {
         axios.post('http://localhost:8081/api/v1/post',{
           description : this.description,
           title: this.title,
-          hashtags: this.hashtags
+          tags: this.tags
         }).then(function(response){
           self.posts.push(response.data);
           self.title = '';
           self.description = '';
           // Send to child (Multiselect) to clean
-          self.$emit('hashtags', []);
+          self.$emit('tags', []);
         }).catch(function(error){
           console.log(error);
         });
@@ -197,9 +197,9 @@ export default {
     }
   },
   created(){
-    // get value from child component and add to hashtags from parent component
-    this.$root.$on('hashtags', (hashtags) => {
-    	this.hashtags = hashtags;
+    // get value from child component and add to tags from parent component
+    this.$root.$on('tags', (tags) => {
+    	this.tags = tags;
     })
   }
 }

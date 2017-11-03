@@ -37,7 +37,7 @@ export default{
     },
     methods:{
         getAllHashtags : function(){
-            axios.get('http://localhost:8081/api/v1/hashtags')
+            axios.get('http://localhost:8081/api/v1/tags')
                 .then(response =>{
                     this.options = response.data;
                 })
@@ -56,12 +56,12 @@ export default{
         },
         // send hashtags to parent component 
         onChange: function(){
-            this.$root.$emit('hashtags',this.value);
+            this.$root.$emit('tags',this.value);
         }
     },
     created(){
         // assigment to value from parent action
-        this.$parent.$on('hashtags',(value) =>{
+        this.$parent.$on('tags',(value) =>{
             this.value = value;
         })
     }

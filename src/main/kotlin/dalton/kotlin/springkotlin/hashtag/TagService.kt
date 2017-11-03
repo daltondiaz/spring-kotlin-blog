@@ -13,16 +13,16 @@ import java.util.*
  */
 
 @Component
-class HashtagService(val hashtagRepostiory: HashtagRepostiory){
+class TagService(val tagRepostiory: TagRepostiory){
 
-    val log = LoggerFactory.getLogger(HashtagService::class.java)
+    val log = LoggerFactory.getLogger(TagService::class.java)
 
     fun delete(id : Long): Boolean{
 
         try{
-            var hashtag = hashtagRepostiory.findOne(id)
+            var hashtag = tagRepostiory.findOne(id)
             hashtag.status = false
-            hashtagRepostiory.save(hashtag)
+            tagRepostiory.save(hashtag)
             return true
         }catch (e : Exception){
             log.error(e.localizedMessage,e)
@@ -31,7 +31,7 @@ class HashtagService(val hashtagRepostiory: HashtagRepostiory){
 
     }
 
-    fun update(hashtag: Hashtag){
+    fun update(hashtag: Tag){
         try {
             hashtag.updateDate = Date()
         }catch (e:Exception){
