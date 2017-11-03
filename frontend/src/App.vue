@@ -9,10 +9,24 @@
 
           <div class="column is-6 ">
             <div class="field">
-              <input type="text" class="input" v-model="title" placeholder="Title"></input>
+              <input type="text" 
+                    class="input" 
+                    v-model="title" 
+                    v-bind:class="{'is-warning':titleField && attemptPost}" 
+                    placeholder="Title">
+              </input>
+              <div class="is-warning" v-if="titleField && attemptPost">This field is required.</div>
             </div>
             <div class="field">
-              <textarea class= "textarea" name="name" rows="8" cols="80" v-model="description" placeholder="Post content"></textarea>
+              <textarea class= "textarea" 
+                      name="name" 
+                      rows="8" 
+                      cols="80" 
+                      v-model="description" 
+                      v-bind:class="{'is-warning':contentField && attemptPost}"
+                      placeholder="Post content">
+              </textarea>
+              <div class="is-warning" v-if="contentField && attemptPost">This field is required.</div>
             </div>
             <v-multiselect v-model="hashtags"></v-multiselect>
             <button class= "button is-success" type="button" name="button" v-on:click="addNewPost()" >Post it</button>
@@ -54,7 +68,7 @@
                     by <b>{{post.author.name}}</b>
                   </i>
                 </footer>
-                <a class="button is-warning is-outlined" @click="isComponentModalActive = true">
+                <a class="button is-warning" @click="isComponentModalActive = true">
                   <span>Edit</span>
                   <span class="icon is-small">
                     <i class="fa fa-edit"></i>
@@ -63,7 +77,7 @@
                 <b-modal :active.sync="isComponentModalActive" has-modal-card>
                   <v-update-post v-bind="post"></v-update-post>
                 </b-modal>
-                <a class="button is-danger is-outlined" @click="deletePost(post)">
+                <a class="button is-danger" @click="deletePost(post)">
                   <span>Delete</span>
                   <span class="icon is-small">
                     <i class="fa fa-times"></i>
@@ -99,7 +113,16 @@ export default {
       ],
       hashtags:[
 
-      ]
+      ],
+      attemptPost: false
+    }
+  },
+  computed:{
+    titleField : function (){
+      return this.isNotEmpty(this.title);
+    },
+    contentField : function(){
+      return this.isNotEmpty(this.description);
     }
   },
   components:{
@@ -112,20 +135,30 @@ export default {
   methods:{ 
     addNewPost: function(){
 
+      this.attemptPost = true;
       self = this;
-      axios.post('http://localhost:8081/api/v1/post',{
-        description : this.description,
-        title: this.title,
-        hashtags: this.hashtags
-      }).then(function(response){
-        self.posts.push(response.data);
-        self.title = '';
-        self.description = '';
-        // Send to child (Multiselect) to clean
-        self.$emit('hashtags', []);
-      }).catch(function(error){
-        console.log(error);
-      });
+      if(!this.titleField && !this.contentField){
+        axios.post('http://localhost:8081/api/v1/post',{
+          description : this.description,
+          title: this.title,
+          hashtags: this.hashtags
+        }).then(function(response){
+          self.posts.push(response.data);
+          self.title = '';
+          self.description = '';
+          // Send to child (Multiselect) to clean
+          self.$emit('hashtags', []);
+        }).catch(function(error){
+          console.log(error);
+        });
+      }else{
+        this.$toast.open({
+          duration: 5000,
+          message: "Some fields are required.",
+          type: "is-danger"
+        });
+      }
+
     },
     getAllPosts : function(){
       axios.get('http://localhost:8081/api/v1/post')
@@ -158,6 +191,9 @@ export default {
             console.log(e);
           })
       }) 
+    },
+    isNotEmpty: function (field){
+      return field === '';
     }
   },
   created(){
