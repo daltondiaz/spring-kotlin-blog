@@ -37,7 +37,7 @@
               <span class="icon">
                 <i class="fa fa-home"></i>
               </span>
-              Posts
+              <a @click="getAllPosts()"> Posts </a>
             </h2>
             <div v-for="post in posts">
               <div class="">
@@ -52,7 +52,9 @@
                 <b-field grouped group-multiline> 
                   <div v-for="(value, key, index) in post.tags">
                     <span class="multiselect__tag">
-                      <span>{{value.name}}</span>
+                      <a class="link-tag" @click="findAllByTag(value)">
+                        <span>{{value.name}}</span>
+                      </a>
                     </span>
                   </div>
                 </b-field>
@@ -134,7 +136,6 @@ export default {
   },
   methods:{ 
     addNewPost: function(){
-
       this.attemptPost = true;
       self = this;
       if(!this.titleField && !this.contentField){
@@ -194,6 +195,16 @@ export default {
     },
     isNotEmpty: function (field){
       return field === '';
+    },
+    findAllByTag : function(value){
+      self = this;
+      axios.post("http://localhost:8081/api/v1/post/tag",{
+        id: value.id
+      }).then(response => {
+        this.posts = response.data;
+      }).catch(error =>{
+        console.log(error);
+      })
     }
   },
   created(){
@@ -206,5 +217,5 @@ export default {
 </script>
 
 <style>
-
+a.link-tag { color: inherit; } 
 </style>

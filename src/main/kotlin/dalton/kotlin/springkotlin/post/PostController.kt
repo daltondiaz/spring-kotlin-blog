@@ -1,6 +1,7 @@
 package dalton.kotlin.springkotlin.post
 
 import dalton.kotlin.springkotlin.author.AuthorRepository
+import dalton.kotlin.springkotlin.hashtag.Tag
 import org.springframework.web.bind.annotation.*
 
 /**
@@ -16,6 +17,11 @@ class PostController(val postRepository: PostRepository, val postService : PostS
         val author = authorRepository.findOne(1L)
         val posts = postRepository.findByAuthorAndStatusOrderByCreationDateDesc(author,true)
         return posts
+    }
+
+    @PostMapping("/post/tag")
+    fun findAllByTag(@RequestBody tag: Tag): List<Post>{
+        return postRepository.findByTagsAndStatusOrderByCreationDateDesc(tag,true)
     }
 
     @GetMapping("/post/{id}")

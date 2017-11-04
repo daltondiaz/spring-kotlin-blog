@@ -1,6 +1,7 @@
 package dalton.kotlin.springkotlin.post
 
 import dalton.kotlin.springkotlin.author.Author
+import dalton.kotlin.springkotlin.hashtag.Tag
 import org.springframework.data.jpa.repository.JpaRepository
 
 /**
@@ -10,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 interface  PostRepository: JpaRepository<Post, Long> {
 
     fun findByAuthorAndStatusOrderByCreationDateDesc(author: Author, status:Boolean):List<Post>
-    
+    fun findByTagsAndStatusOrderByCreationDateDesc(tag: Tag, status: Boolean):List<Post>
 }
