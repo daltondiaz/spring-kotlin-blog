@@ -20,15 +20,16 @@ The port 8081 is backend and 8080 frontend. If everything is okay access http://
 
 ## Tools
 
-- Intellij Communinty Edition, to programming in kotlin
-- Visual Studio Code, to programming in js
-- DBeaver, to access the database ( For me is the best ide to connection with database in linux)
+- [Intellij Communinty Edition](https://www.jetbrains.com/idea/download), to programming in kotlin
+- [Visual Studio Code](https://code.visualstudio.com/), to programming in js
+- [DBeaver](https://dbeaver.jkiss.org/), to access the database ( For me is the best ide to connection with database in linux)
 
 ### Backend
 
 - PostgreSQL to management the database. You can change the database in file application.properties and add your dependence in build.gradle
 - Spring Boot
 - Kotlin, I want use 100% kotlin in this project, discovery news challenges and improve my knowledge in this language
+- Jwt Authentication between backend and frontend, the responsible for this is Spring Security.
 
 ### Frontend
 
@@ -40,21 +41,28 @@ The port 8081 is backend and 8080 frontend. If everything is okay access http://
 ## Tables
 
 - Author: Like a user, but I choice use the name Author
-- Post: Its my post, have a author and many hashtags
-- Hashtag: Like the owener name [building]
+- Post: Its my post, have a author and many tags
+- Tag: One post can be one or more tags
+- Role: Each Author has one or more role for now can be Standard User and Administrator
 
 ## Routes
 
 For now only home
 
+## Future
+
+- Run Backend and Frontend each one in a container
+
 ## License
 
 This project is Apache 2.0 licensed.
 
-## Fonts
+## Resources
 
  - [Kotlin based Gradle](https://blog.gradle.org/kotlin-meets-gradle)
  - [Developing Spring Boot applications with Kotlin](https://spring.io/blog/2016/02/15/developing-spring-boot-applications-with-kotlin)
+ - [Secure a Spring Boot REST API With JSON Web Token + Reference to Angular Integration](https://medium.com/@nydiarra/secure-a-spring-boot-rest-api-with-json-web-token-reference-to-angular-integration-e57a25806c50)
+ - [Vuejs](https://vuejs.org/)
 
 
 
