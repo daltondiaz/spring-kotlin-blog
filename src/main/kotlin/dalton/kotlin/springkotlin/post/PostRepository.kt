@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 /**
  * Created by dalton on 08/06/17.
+ *
+ * @author dalton
+ * @since v1.0
  */
 
 interface  PostRepository: JpaRepository<Post, Long> {

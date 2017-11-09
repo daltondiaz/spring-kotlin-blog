@@ -1,6 +1,7 @@
 package dalton.kotlin.springkotlin.author
 
 import javax.persistence.*
+import dalton.kotlin.springkotlin.role.Role
 
 /**
  * Created by dalton on 11/06/17.
@@ -16,5 +17,7 @@ data class Author(
         var name: String = "",
         var email: String = "",
         var password: String = "",
-        var status: Boolean = false
+        var status: Boolean = false,
+        @ManyToMany(fetch = FetchType.EAGER)
+        var roles: MutableList<Role> = mutableListOf()
 )

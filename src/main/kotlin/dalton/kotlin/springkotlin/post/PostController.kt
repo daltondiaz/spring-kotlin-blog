@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*
 
 /**
  * Created by dalton on 08/06/17.
+ *
+ * @author dalton
+ * @since v1.0
  */
 
 @RestController

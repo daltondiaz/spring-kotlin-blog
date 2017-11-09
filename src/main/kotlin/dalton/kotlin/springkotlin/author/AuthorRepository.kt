@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository
  * @since v1.0
  */
 
-interface AuthorRepository: JpaRepository<Author,Long>
+interface AuthorRepository: JpaRepository<Author,Long>{
+    fun findByName(name: String?): Author?
+}
