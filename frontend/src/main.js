@@ -17,13 +17,50 @@ Vue.use(Buefy)
 
 // Set up routing and match routes to components
 export var router = new VueRouter({
-  routes:[
-    {path: '/home', component: App}
+  hashbang: false,
+  linkActiveClass: 'active',
+  mode: 'history',
+  base: __dirname,
+  routes:[{
+      path: '/home',
+      name: 'home', 
+      component: require('./App.vue')
+    },{
+      path: '/posts',
+      name: 'posts', 
+      component: require('./components/Post.vue')
+    },{
+      path: '/login',
+      name: 'login', 
+      component: require('./components/Login.vue')
+    }
+    ,{
+      path: '/about', 
+      name: 'about',
+      component: require('./components/About.vue')
+    }
   ]
-})
+});
+
+// remember to set vue.router before plugin
+Vue.router = router
+
+// Set plugin vue-auth
+Vue.use(require('@websanova/vue-auth'),{
+  auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
+  http: require('@websanova/vue-auth/drivers/http/vue-resource.1.x.js'),
+  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+  rolesVar: 'role'
+
+});
+App.router = Vue.router;
 
 new Vue({
   el: '#app',
   router,
   render: h => h(App)
 })
+
+
+
+//new Vue(App).$mount('#app');

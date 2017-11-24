@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "@websanova/vue-auth": "^2.20.4-beta",
     "axios": "^0.16.2",
     "bulma": "^0.6.0",
     "moment": "^2.19.1",

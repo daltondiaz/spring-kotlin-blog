@@ -1,12 +1,19 @@
 # Project build a simple blog
 
-I change de goal to create a simple blog, only for add some content.
+The main idea from this project is put together some concepts like RESTFull, 
+authentication by Json Web Token, separate the development the backend and frontend and some other things.
 
-This project uses a [Kotlin based Gradle](https://blog.gradle.org/kotlin-meets-gradle) configuration, but `build.gradle.kts` auto-complete is currently not available since Kotlin `1.1-M04` IDEA plugin needed for that does not allow to use `kotlin-spring` and `kotlin-jpa` compiler in a reliable way.
-
-Make sure you have at least IntelliJ IDEA 2016.3 and Kotlin plugin 1.0.6 since `kotlin-spring` and `kotlin-jpa` compiler plugins require this version.
+The backend use Kotlin and frontend Vuejs.
 
 ## Running
+
+This project uses a [Kotlin based Gradle](https://blog.gradle.org/kotlin-meets-gradle) 
+configuration, but `build.gradle.kts` auto-complete is currently not available since 
+Kotlin `1.1-M04` IDEA plugin needed for that does not allow to use `kotlin-spring` 
+and `kotlin-jpa` compiler in a reliable way.
+
+Make sure you have at least IntelliJ IDEA 2016.3 and Kotlin plugin 1.0.6 since 
+`kotlin-spring` and `kotlin-jpa` compiler plugins require this version.
 
 You need install postgresql and the configuration are in **application.properties**
 
