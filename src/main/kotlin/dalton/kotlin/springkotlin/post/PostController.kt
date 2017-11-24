@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/v1")
 class PostController(val postRepository: PostRepository, val postService : PostService, val authorRepository: AuthorRepository){
 
-    @GetMapping("/post")
-    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
+    @GetMapping("/posts")
+   // @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
     fun findAll():List<Post>{
         val author = authorRepository.findOne(1L)
         val posts = postRepository.findByAuthorAndStatusOrderByCreationDateDesc(author,true)

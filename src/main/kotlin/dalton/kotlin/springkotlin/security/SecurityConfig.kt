@@ -17,6 +17,11 @@ import org.springframework.security.oauth2.provider.token.TokenStore
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
+
+
 
 /**
  * Created by dalton on 06/11/17.
@@ -54,14 +59,12 @@ class SecurityConfig(val userDetailsService: UserDetailsService) : WebSecurityCo
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/actuator/**", "/api-docs/**").permitAll()
-                .antMatchers("/springjwt/**").authenticated()
+                .antMatchers("/api/v1/posts", "/api-docs/**").permitAll()
+                .antMatchers("/api/v1/**").authenticated()
                 .and()
                 .httpBasic()
                 .realmName(securityRealm)
-                .and()
-                .csrf()
-                .disable()
+                .and().cors()//.csrf().disable()
     }
 
     @Bean
@@ -83,7 +86,4 @@ class SecurityConfig(val userDetailsService: UserDetailsService) : WebSecurityCo
         tokenServices.setSupportRefreshToken(true)
         return tokenServices
     }
-
 }
-
-

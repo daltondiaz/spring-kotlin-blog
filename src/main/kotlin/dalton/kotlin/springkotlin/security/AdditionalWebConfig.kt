@@ -13,16 +13,16 @@ import org.springframework.web.filter.CorsFilter
  *
  * @author dalton
  * @since v1.0
- */
 
 @Configuration
 class AdditionalWebConfig{
+ */
     /**
      * Allowing all origins, headers and methods here is only intended to keep this example simple.
      * This is not a default recommended configuration. Make adjustments as
      * necessary to your use case.
      *
-     */
+
 
     @Bean
     fun corsFilter(): FilterRegistrationBean {
@@ -30,12 +30,13 @@ class AdditionalWebConfig{
         val corsConfiguration = CorsConfiguration()
 
         corsConfiguration.allowCredentials = true
-        corsConfiguration.addAllowedOrigin("*")
+        corsConfiguration.addAllowedOrigin("http://localhost:8080")
         corsConfiguration.addAllowedHeader("*")
         corsConfiguration.addAllowedMethod("*")
-        source.registerCorsConfiguration("/**",corsConfiguration)
+        source.registerCorsConfiguration("/**", corsConfiguration)
         val bean = FilterRegistrationBean(CorsFilter(source))
         bean.order = 0
         return bean
     }
 }
+    */
