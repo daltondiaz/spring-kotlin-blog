@@ -1,5 +1,6 @@
 package dalton.kotlin.springkotlin.role
 
+import org.springframework.security.core.GrantedAuthority
 import javax.persistence.*
 
 /**
@@ -18,4 +19,8 @@ data class Role (
        @Column(name = "role_name")
        var roleName: String,
        var status: Boolean
-)
+): GrantedAuthority {
+       override fun getAuthority(): String {
+           return roleName
+       }
+}
