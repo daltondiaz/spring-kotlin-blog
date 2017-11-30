@@ -136,7 +136,7 @@ class TokenHelper(){
         return Date(Date().time.plus(expiresIn.times(1000)))
     }
 
-    fun getExpiredIn(device: Device): Long? {
+    fun getExpiredIn(device: Device): Long {
         if (device.isMobile() || device.isTablet()){
             return MOBILE_EXPIRES_IN
         }
