@@ -22,6 +22,7 @@ data class Author (
         var name: String = "",
         var email: String = "",
         var status: Boolean = false,
+        private var password: String = "",
         @ManyToMany(fetch = FetchType.EAGER)
         var roles: MutableList<Role> = mutableListOf(),
         @Column(name = "last_password_reset_date")
@@ -33,7 +34,7 @@ data class Author (
 
     override fun isCredentialsNonExpired(): Boolean = true
 
-    override fun getPassword(): String = password
+    override  fun getPassword(): String = this.password
 
     fun setPassword(password: String){
         val now = Timestamp(DateTime.now().millis)

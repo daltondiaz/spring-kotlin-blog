@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController
 import java.io.IOException
 import javax.servlet.http.HttpServletResponse
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.postgresql.gss.MakeGSS.authenticate
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
 import java.security.Principal
