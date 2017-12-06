@@ -1,5 +1,6 @@
 package dalton.kotlin.springkotlin.security
 
+import dalton.kotlin.springkotlin.author.Author
 import dalton.kotlin.springkotlin.author.AuthorRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -34,7 +35,7 @@ class UserDetailsService(val authorRepository: AuthorRepository): UserDetailsSer
         val authorities = ArrayList<GrantedAuthority>()
         author.roles.forEach { role -> authorities.add(SimpleGrantedAuthority(role.roleName)) }
 
-        return User(author.name,author.password,authorities)
+        return author
     }
 
 
