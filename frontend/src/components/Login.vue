@@ -50,14 +50,18 @@ export default{
             var redirect = this.$auth.redirect();
 
             this.$auth.login({
+                method: 'post',
                 body: this.data.body, //
-                data: this.data.body,
+              //  data: this.data.body,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 rememberMe: this.data.rememberMe,
                 redirect:{
                     name: redirect ? redirect.from.name: 'posts'
                 },
-                url: 'http://localhost:8081/oauth/token',
-                fetchUser: false
+                url: 'http://localhost:8082/auth/login',
+             //   fetchUser: false,
             })
             .then(() => {
                 console.log('Success')

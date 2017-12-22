@@ -31,14 +31,14 @@ The port 8081 is backend and 8080 frontend. If everything is okay access http://
 - [Visual Studio Code](https://code.visualstudio.com/), to programming in js
 - [DBeaver](https://dbeaver.jkiss.org/), to access the database ( For me is the best ide to connection with database in linux)
 
-### Backend
+## Backend
 
 - PostgreSQL to management the database. You can change the database in file application.properties and add your dependence in build.gradle
 - Spring Boot
 - Kotlin, I want use 100% kotlin in this project, discovery news challenges and improve my knowledge in this language
 - Jwt Authentication between backend and frontend, the responsible for this is Spring Security.
 
-### Frontend
+## Frontend
 
 - Vuejs [https://vuejs.org/]
 - Bulma [http://bulma.io/]
