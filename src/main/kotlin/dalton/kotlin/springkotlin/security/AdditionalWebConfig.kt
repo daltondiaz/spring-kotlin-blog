@@ -7,22 +7,23 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
-
 /**
  * Created by dalton on 08/11/17.
  *
  * @author dalton
  * @since v1.0
-
-@Configuration
-class AdditionalWebConfig{
  */
+@Configuration
+class AdditionalWebConfig {
+
+
+
     /**
      * Allowing all origins, headers and methods here is only intended to keep this example simple.
      * This is not a default recommended configuration. Make adjustments as
      * necessary to your use case.
      *
-
+     */
 
     @Bean
     fun corsFilter(): FilterRegistrationBean {
@@ -30,13 +31,12 @@ class AdditionalWebConfig{
         val corsConfiguration = CorsConfiguration()
 
         corsConfiguration.allowCredentials = true
-        corsConfiguration.addAllowedOrigin("http://localhost:8080")
-        corsConfiguration.addAllowedHeader("*")
-        corsConfiguration.addAllowedMethod("*")
-        source.registerCorsConfiguration("/**", corsConfiguration)
+        corsConfiguration.addAllowedOrigin("*")
+        corsConfiguration.addAllowedMethod("GET, PUT, POST, DELETE, OPTIONS")
+        corsConfiguration.addAllowedHeader("DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range")
+        source.registerCorsConfiguration("/**", corsConfiguration.applyPermitDefaultValues())
         val bean = FilterRegistrationBean(CorsFilter(source))
         bean.order = 0
         return bean
     }
 }
-    */

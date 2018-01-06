@@ -7,15 +7,12 @@ import org.springframework.http.MediaType
 import org.springframework.mobile.device.Device
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.core.AuthenticationException
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RestController
 import java.io.IOException
 import javax.servlet.http.HttpServletResponse
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.web.bind.annotation.*
 import java.security.Principal
 import javax.servlet.http.HttpServletRequest
 
@@ -35,6 +32,7 @@ class AuthenticationController(val tokenHelper: TokenHelper,
                                val deviceProvider: DeviceProvider){
 
     @Throws(AuthenticationException::class, IOException::class)
+    @CrossOrigin(origins = arrayOf("http://localhost:8080"))
     @RequestMapping(value = "/login", method = arrayOf(RequestMethod.POST))
     fun createAuthenticationToken(@RequestBody authenticationRequest: JwtAuthenticationRequest,
                                   response: HttpServletResponse,

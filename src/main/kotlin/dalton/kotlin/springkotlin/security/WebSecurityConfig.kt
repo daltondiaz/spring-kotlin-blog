@@ -50,7 +50,7 @@ class WebSecurityConfig(val jwtUserDetailsService: UserDetailsService,
 
     @Throws(Exception::class)
     @Autowired
-    fun configurationGlobal(auth: AuthenticationManagerBuilder){
+    fun configureGlobal(auth: AuthenticationManagerBuilder){
         auth.userDetailsService(jwtUserDetailsService)
                 .passwordEncoder(passwordEncoder())
     }
@@ -61,12 +61,13 @@ class WebSecurityConfig(val jwtUserDetailsService: UserDetailsService,
         Arrays.asList("POST", "PUT", "PATCH", "DELETE")
                 .forEach { method -> csrfMethods.add(AntPathRequestMatcher("/**", method)) }
 
-        val addFilterBefore = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated().and()
                 .addFilterBefore(TokenAuthenticationFilter(tokenHelper, jwtUserDetailsService), BasicAuthenticationFilter::class.java)
+
 
         http.csrf().disable()
 
@@ -75,6 +76,10 @@ class WebSecurityConfig(val jwtUserDetailsService: UserDetailsService,
     @Throws(exceptionClasses = Exception::class)
     override fun configure(web: WebSecurity) {
         web.ignoring().antMatchers(HttpMethod.POST,"/auth/login")
+        web.ignoring().antMatchers(
+                HttpMethod.GET,
+                "/"
+        )
     }
 
 

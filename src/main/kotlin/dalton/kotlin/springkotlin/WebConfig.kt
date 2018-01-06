@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 
 
+
 /**
  *  Enabling CORS for the whole application to methods:
  *  GET, POST, PUT and DELETE
@@ -32,5 +33,4 @@ class MyConfiguration {
             }
         }
     }
-}
-*/
+}*/
